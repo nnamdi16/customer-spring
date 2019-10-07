@@ -1,5 +1,8 @@
 package learn.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.GenericGenerators;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,7 +10,7 @@ import javax.persistence.*;
 public class Student {
   
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GenericGenerator(name = "id",strategy = "increment")
   @Column(name = "id")
   private int id;
   
@@ -17,10 +20,16 @@ public class Student {
   @Column(name = "student_lastName")
   private String lastName;
   
-  @Column(name = "email")
+  @Column(name = "student_email")
   private String email;
   
   public Student() {}
+  
+  public Student(String firstName, String lastName, String email) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+  }
   
   public int getId() {
     return id;

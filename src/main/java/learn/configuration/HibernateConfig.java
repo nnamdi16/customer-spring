@@ -1,6 +1,7 @@
 package learn.configuration;
 
 import learn.entity.Customer;
+import learn.entity.Student;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -28,6 +29,7 @@ public class HibernateConfig {
         //Add annotation for all entity here
         //configuration.addAnnotatedClass(Student.class);
         configuration.addAnnotatedClass(Customer.class);
+        configuration.addAnnotatedClass(Student.class);
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
         sessionFactory = configuration.buildSessionFactory(serviceRegistry);
       } catch (Exception e) {
