@@ -7,14 +7,28 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.Properties;
 
+@org.springframework.context.annotation.Configuration
+@EnableWebMvc
+@EnableTransactionManagement
+@ComponentScan(basePackages = {
+        "learn"
+})
 public class HibernateConfig {
   private static SessionFactory sessionFactory;
+  
+  @Bean
   public static SessionFactory getSessionFactory() {
     if (sessionFactory == null) {
       try {
+      
+        
         Configuration configuration = new Configuration();
         Properties settings = new Properties();
         settings.put(Environment.DRIVER,"com.mysql.cj.jdbc.Driver");
