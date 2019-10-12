@@ -44,6 +44,7 @@ public class HibernateConfig {
         //configuration.addAnnotatedClass(Student.class);
         configuration.addAnnotatedClass(Customer.class);
         configuration.addAnnotatedClass(Student.class);
+  
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
         sessionFactory = configuration.buildSessionFactory(serviceRegistry);
       } catch (Exception e) {

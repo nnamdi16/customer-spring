@@ -11,29 +11,24 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
+  
+  
+  @RequestMapping("/getCustomers")
+  public String listCustomers(Model model) {
+    CustomerService customerService = new CustomerServiceImpl();
+    List<Customer> theCustomers = customerService.getCustomers();
+    model.addAttribute("customer", theCustomers);
+    System.out.println(theCustomers);
+    return "list-customers";
+  }
 
 
-//  @RequestMapping("/getCustomers")
-//  public String listCustomers(Model model) {
-//    CustomerService customerService = new CustomerServiceImpl();
-//    List<Customer> theCustomers = customerService.getCustomers();
-//    model.addAttribute("customer", theCustomers);
-//    return "editCustomer";
-//  }
-
-//  @PostMapping("/saveCustomer")
-//  public String addCustomer(Model model) {
-//    CustomerService customerService = new CustomerServiceImpl();
-//    Customer customer = new Customer("Habash", "Solomon", "hjabez@gmail.com");
-//    customerService.createCustomers(customer);
-//    System.out.println(customer);
-//    model.addAttribute("addCustomer", customer);
-//    return "editCustomer";
-//  }
   
   
   @GetMapping("/showForm")
