@@ -9,7 +9,5 @@ public interface CustomersDAO {
   
   public void createCustomers(Customer customer);
 
-//  void save(Customer customer);
 
-//  List<Customer> list();
 }
