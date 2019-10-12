@@ -11,6 +11,7 @@ import javax.persistence.Table;
 @Table(name = "customer")
 public class Customer {
   @Id
+
   @GenericGenerator(name = "id", strategy = "increment")
   @Column(name = "id")
   private int id;
