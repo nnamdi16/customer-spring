@@ -1,38 +1,43 @@
 package learn.entity;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.GenericGenerators;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "customer")
-public class Customer {
+@Table(name="student")
+public class Student {
+  
   @Id
-  @GenericGenerator(name = "id", strategy = "increment")
+  @GenericGenerator(name = "id",strategy = "increment")
   @Column(name = "id")
   private int id;
   
-  @Column(name = "first_name")
+  @Column(name= "student_firstName")
   private String firstName;
   
-  @Column(name = "last_name")
+  @Column(name = "student_lastName")
   private String lastName;
   
-  @Column(name = "email")
+  @Column(name = "student_email")
   private String email;
   
-  public Customer() {
-  }
+  public Student() {}
   
-  public Customer(String firstName, String lastName, String email) {
+  public Student(String firstName, String lastName, String email) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
   }
   
+  public int getId() {
+    return id;
+  }
+  
+  public void setId(int id) {
+    this.id = id;
+  }
   
   public String getFirstName() {
     return firstName;
@@ -58,17 +63,9 @@ public class Customer {
     this.email = email;
   }
   
-  public int getId() {
-    return id;
-  }
-  
-  public void setId(int id) {
-    this.id = id;
-  }
-  
   @Override
   public String toString() {
-    return "Customer{" +
+    return "Student{" +
             "id=" + id +
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
