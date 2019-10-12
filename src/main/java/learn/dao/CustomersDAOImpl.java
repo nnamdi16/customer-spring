@@ -2,13 +2,11 @@ package learn.dao;
 
 import learn.configuration.HibernateConfig;
 import learn.entity.Customer;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -19,19 +17,29 @@ public class CustomersDAOImpl implements CustomersDAO {
   
   @Override
   public List<Customer> getCustomers() {
-    Session session = HibernateConfig.getSessionFactory().getCurrentSession();
-    CriteriaBuilder cb = session.getCriteriaBuilder();
-    CriteriaQuery<Customer> customerCriteriaQuery = cb.createQuery(Customer.class);
-    Root<Customer> root = customerCriteriaQuery.from(Customer.class);
-    customerCriteriaQuery.select(root);
-    Query query = session.createQuery(customerCriteriaQuery);
+    Session session = null;
+  
+    @SuppressWarnings("unchecked")
+    TypedQuery<Customer> query = null;
+  
+    try {
+      session = HibernateConfig.getSessionFactory().openSession();
+      session.beginTransaction();
+//    CriteriaBuilder cb = session.getCriteriaBuilder();
+//    CriteriaQuery<Customer> customerCriteriaQuery = cb.createQuery(Customer.class);
+//    Root<Customer> root = customerCriteriaQuery.from(Customer.class);
+//    customerCriteriaQuery.select(root);
+//    Query query = session.createQuery(customerCriteriaQuery);
+//    session.getTransaction().commit();
+//    return query.getResultList();
+      query = session.createQuery("from Customer");
+    
+    } catch (HibernateException e) {
+      e.printStackTrace();
+    }
     return query.getResultList();
   }
   
-  @Override
-  public int hashCode() {
-    return super.hashCode();
-  }
   
   @Override
   public void createCustomers(Customer customer) {
