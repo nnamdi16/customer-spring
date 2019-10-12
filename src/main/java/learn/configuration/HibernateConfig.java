@@ -36,7 +36,7 @@ public class HibernateConfig {
         settings.put(Environment.USER,"springstudent");
         settings.put(Environment.PASS, "springstudent");
         settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
-        settings.put(Environment.POOL_SIZE, 1);
+        settings.put(Environment.POOL_SIZE, 1000);
         settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
         settings.put(Environment.SHOW_SQL, "true");
         configuration.setProperties(settings);
@@ -54,5 +54,6 @@ public class HibernateConfig {
     }
     return sessionFactory;
   }
+  
   
 }
