@@ -42,7 +42,7 @@ public class CustomerController {
   public String saveCustomer(@ModelAttribute("customer") Customer theCustomer) {
     CustomerService customerService = new CustomerServiceImpl();
     customerService.createCustomers(theCustomer);
-    return "redirect:/customer/list";
+    return "redirect:/customer/getCustomers";
   }
   
   
