@@ -6,11 +6,14 @@ import learn.service.CustomerService;
 import learn.service.CustomerServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-
+@RequestMapping("/customer")
 public class CustomerController {
 
 
@@ -21,17 +24,33 @@ public class CustomerController {
 //    model.addAttribute("customer", theCustomers);
 //    return "editCustomer";
 //  }
-  
-  @RequestMapping("/")
-  public String addCustomer(Model model) {
-    CustomerService customerService = new CustomerServiceImpl();
-    Customer customer = new Customer("Habash", "Solomon", "hjabez@gmail.com");
-    customerService.createCustomers(customer);
-    System.out.println(customer);
-    model.addAttribute("addCustomer", customer);
-    return "editCustomer";
-  }
 
+//  @PostMapping("/saveCustomer")
+//  public String addCustomer(Model model) {
+//    CustomerService customerService = new CustomerServiceImpl();
+//    Customer customer = new Customer("Habash", "Solomon", "hjabez@gmail.com");
+//    customerService.createCustomers(customer);
+//    System.out.println(customer);
+//    model.addAttribute("addCustomer", customer);
+//    return "editCustomer";
+//  }
+  
+  
+  @GetMapping("/showForm")
+  public String showFormForAdd(Model model) {
+    Customer theCustomer = new Customer();
+    model.addAttribute("customer", theCustomer);
+    return "customer-form";
+  }
+  
+  @PostMapping("/saveCustomer")
+  public String saveCustomer(@ModelAttribute("customer") Customer theCustomer) {
+    CustomerService customerService = new CustomerServiceImpl();
+    customerService.createCustomers(theCustomer);
+    return "redirect:/customer/list";
+  }
+  
+  
 //  @RequestMapping("/index")
 //  public String loadIndexPage() {
 //    CustomerDao customerDao = new CustomerDao();
