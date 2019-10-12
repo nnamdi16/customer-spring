@@ -43,16 +43,19 @@ public class CustomersDAOImpl implements CustomersDAO {
   
   @Override
   public void createCustomers(Customer customer) {
+    Session session = null;
     try {
-      Session session = HibernateConfig.getSessionFactory().getCurrentSession();
+      session = HibernateConfig.getSessionFactory().getCurrentSession();
       session.beginTransaction();
       session.save(customer);
+      System.out.println(session);
       session.getTransaction().commit();
       
     } catch (Exception e) {
       e.printStackTrace();
+    } finally {
+      session.close();
     }
-    
   }
   
   //  @Override
