@@ -16,6 +16,7 @@ repositories {
 
 dependencies {
     providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+    providedCompile'javax.servlet:servlet-api:2.5'
     compile 'org.springframework:spring-web:5.1.9.RELEASE'
     compile group: 'org.springframework', name: 'spring-core', version: '5.1.9.RELEASE'
     compile 'org.springframework:spring-webmvc:5.1.9.RELEASE'
@@ -23,9 +24,8 @@ dependencies {
     compile 'org.hibernate.orm:hibernate-core:6.0.0.Alpha2'
     compile 'mysql:mysql-connector-java:8.0.17'
     compile 'com.paga.business:business-client:1.0-SNAPSHOT'
-    compile 'javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1'
     compile 'taglibs:standard:1.1.2'
-    compileOnly 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.1'
+    compile 'javax.servlet.jsp.jstl:jstl-api:1.2'
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
